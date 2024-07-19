@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Nunito+Sans:ital,wght@0,400;0,700;0,800;1,300;1,700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* h1 {
+    color: #61fbb8;
+    text-align: center;
+    margin-bottom: 30px;
+} */
+
+
+
+.pencil {
+    background-image: url("/assets/img.jpg");
+    background-size: cover;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo{
+    position: relative;
+    max-width: 80px;
+}
+header ul{
+    position: relative;
+    display: flex;
+}
+header ul li{
+    list-style: none;
+}
+header ul li a{
+    display: inline-block;
+    color: white;
+    font-weight: 800;
+    margin-left: 40px;
+    text-decoration: none;
+}
+
+.circle{
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    background-color: black;
+    height: 60px;
+    color: white;
+    padding: 20px;
+    /* border-radius: 8px; */
+    /* margin-bottom: 20px; */
+    gap: 10px;
+}
+
+.box-1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    background-color: yellow;
+    color: black;
+    height: 600px;
+}
+
+.box-content{
+    margin-top: 30px;
+    
+    /* width: 100%; */
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+.box-content h2{
+    margin-left: 25px;
+    margin-right: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-content p{
+    font-size: 1.5rem;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+footer{
+    margin: 0px;
+    width: 100%;
+}
+
+.foot-panel4{
+    background-color: #0f1111;
+    width: 100%;
+    color: white;
+    height: 90px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.pages{
+    padding-top: 25px;
+}
+
+.copyright{
+    padding-top: 5px;
+}
