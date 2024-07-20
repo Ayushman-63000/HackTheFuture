@@ -1,47 +1,128 @@
 // Get elements
-const giveWasteOption = document.getElementById('giveWasteOption');
-const popup = document.getElementById('pickupFormPopup');
+const sellWasteOption = document.getElementById('sellWasteOption');
+const sellWastePopup = document.getElementById('sellWastePopup');
 const closePopup = document.getElementById('closePopup');
-const pickupForm = document.getElementById('pickupForm');
+const sellWasteForm = document.getElementById('sellWasteForm');
 const confirmationPopup = document.getElementById('confirmationPopup');
 const closeConfirmationPopup = document.getElementById('closeConfirmationPopup');
 const confirmationMessage = document.getElementById('confirmationMessage');
+const materialsContainer = document.getElementById('materialsContainer');
+const addMaterialButton = document.getElementById('addMaterial');
 
-// Show the pickup form popup when the option is clicked
-giveWasteOption.addEventListener('click', function(event) {
+// Show the sell waste popup when the option is clicked
+sellWasteOption.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default anchor behavior
-    popup.style.display = 'block'; // Show the pickup form popup
+    sellWastePopup.style.display = 'block'; // Show the popup
 });
 
-// Close the pickup form popup when the 'x' is clicked
+// Close the sell waste popup when the 'x' is clicked
 closePopup.addEventListener('click', function() {
-    popup.style.display = 'none'; // Hide the pickup form popup
+    sellWastePopup.style.display = 'none'; // Hide the popup
 });
 
-// Close the pickup form popup when clicking outside of the popup content
+// Close the sell waste popup when clicking outside of the popup content
 window.addEventListener('click', function(event) {
-    if (event.target === popup) {
-        popup.style.display = 'none'; // Hide the pickup form popup
+    if (event.target === sellWastePopup) {
+        sellWastePopup.style.display = 'none'; // Hide the popup
     }
 });
 
+// Add a new material entry
+addMaterialButton.addEventListener('click', function() {
+    const newMaterialEntry = document.createElement('div');
+    newMaterialEntry.className = 'material-entry';
+    newMaterialEntry.innerHTML = `
+        <select class="material-select" required>
+            <option value="">--Select Material--</option>
+            <option value="plastic">Plastic - ₹15 per kg</option>
+            <option value="paper">Paper - ₹10 per kg</option>
+            <option value="biomass">Biomass - ₹20 per kg</option>
+            <option value="metal">Metal - ₹55 per kg</option>
+            <option value="glass">Glass - ₹25 per kg</option>
+        </select>
+        <input type="number" class="material-quantity" placeholder="Quantity (kg)" min="1" required>
+        <button type="button" class="remove-material">Remove</button>
+    `;
+    materialsContainer.appendChild(newMaterialEntry);
+    updateMaterialOptions(); // Update the material options after adding a new entry
+});
+
+// Handle removing a material entry
+materialsContainer.addEventListener('click', function(event) {
+    if (event.target.classList.contains('remove-material')) {
+        event.target.parentElement.remove();
+        updateMaterialOptions(); // Update the material options after removing an entry
+    }
+});
+
+// Function to update material options based on selected materials
+function updateMaterialOptions() {
+    const selectedMaterials = Array.from(materialsContainer.querySelectorAll('.material-select'))
+        .map(select => select.value)
+        .filter(value => value); // Get selected values
+
+    const materialSelects = materialsContainer.querySelectorAll('.material-select');
+    materialSelects.forEach(select => {
+        const options = select.querySelectorAll('option');
+        options.forEach(option => {
+            if (selectedMaterials.includes(option.value) && option.value !== select.value) {
+                option.disabled = true; // Disable already selected materials
+            } else {
+                option.disabled = false; // Enable options that are not selected
+            }
+        });
+    });
+}
+
 // Handle form submission
-pickupForm.addEventListener('submit', function(event) {
+sellWasteForm.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
 
     // Get form values
-    const location = document.getElementById('location').value;
-    const date = document.getElementById('date').value;
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const scheduleDate = document.getElementById('scheduleDate').value;
+    const pickupLocation = document.getElementById('pickupLocation').value;
+
+    // Validate phone number
+    if (phone.length !== 10) {
+        alert("Please enter a valid 10-digit phone number.");
+        return; // Exit the function if phone number is invalid
+    }
+
+    // Get selected materials and quantities
+    const materials = [];
+    const materialEntries = document.querySelectorAll('.material-entry');
+
+    materialEntries.forEach(entry => {
+        const materialSelect = entry.querySelector('.material-select');
+        const quantityInput = entry.querySelector('.material-quantity');
+        const material = materialSelect.value;
+        const quantity = quantityInput.value;
+
+        // Check if material and quantity are selected
+        if (material && quantity) {
+            materials.push(`${material} - ${quantity} kg`);
+        }
+    });
+
+    // Check if any materials were selected
+    if (materials.length === 0) {
+        alert("Please select at least one material with a quantity.");
+        return; // Exit the function if no materials are selected
+    }
 
     // Display confirmation message in the confirmation popup
-    confirmationMessage.textContent = `Pickup scheduled at ${location} on ${date}.`;
+    confirmationMessage.textContent = `Your details have been successfully submitted! Your pickup is scheduled at ${pickupLocation} on ${scheduleDate}. Selected materials: ${materials.join(', ')}.`;
     confirmationPopup.style.display = 'block'; // Show the confirmation popup
 
-    // Hide the pickup form popup
-    popup.style.display = 'none';
+    // Hide the sell waste popup
+    sellWastePopup.style.display = 'none';
 
     // Reset the form
-    pickupForm.reset();
+    sellWasteForm.reset();
+    materialsContainer.innerHTML = ''; // Clear materials
 });
 
 // Close the confirmation popup when the 'x' is clicked
