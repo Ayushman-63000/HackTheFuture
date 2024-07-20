@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose an Option</title>
+    <link rel="stylesheet" href="style5.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h2>What would you like to do?</h2>
+        <div class="options">
+            <a href="#" class="option" id="giveWasteOption">
+                <h3>Give Waste Materials</h3>
+                <p>Click here if you want to give your waste materials for recycling.</p>
+            </a>
+            <a href="#" class="option" id="purchaseRecycledItems">
+                <h3>Purchase Recycled Items</h3>
+                <p>Click here if you want to purchase recycled items.</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Popup Form -->
+    <div id="pickupFormPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h3>Schedule Pickup</h3>
+            <form id="pickupForm">
+                <label for="location">Your Location:</label>
+                <input type="text" id="location" name="location" required>
+
+                <label for="date">Schedule Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <button type="submit">Schedule Pickup</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Popup -->
+    <div id="confirmationPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closeConfirmationPopup">&times;</span>
+            <h3>Pickup Scheduled Successfully!</h3>
+            <p id="confirmationMessage"></p>
+        </div>
+    </div>
+
+    <script src="script3.js"></script>
+</body>
+</html>

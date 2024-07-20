@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.gallery-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.description {
+    padding: 15px;
+}
+
+.description h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.description p {
+    color: #666;
+}
