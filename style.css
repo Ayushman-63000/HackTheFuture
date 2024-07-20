@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    /* background-color: green; */
 }
 
 /* h1 {
@@ -15,14 +16,26 @@
 
 
 .pencil {
-    background-image: url("/assets/img.jpg");
+    background-image: url("/assets/aws.jpg");
     background-size: cover;
     height: 800px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    /* background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center; */
 }
 
+.pencil button{
+    width: 300px;
+    padding: 17px;
+    font-size: 2.5rem;
+    background-color: yellow;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
 
 header{
     position: absolute;
@@ -39,24 +52,43 @@ header .logo{
     max-width: 80px;
 }
 header ul{
-    position: relative;
+    /* position: relative; */
     display: flex;
+    margin-left: 200px;
 }
 header ul li{
     list-style: none;
+    /* margin-left: 200px; */
 }
 header ul li a{
-    display: inline-block;
+    /* display: inline-block; */
     color: white;
     font-weight: 800;
     margin-left: 40px;
     text-decoration: none;
+    
 }
-
+.logo {
+    height: 25px;
+    width: 200px;
+    display: flex;
+    margin-top: 0;
+}
+.logoclass{
+    display: flex;
+    background-image:url("./assets/logo.png") ;
+    height: 200px;
+    background-repeat: no-repeat;
+    align-items: left;
+    background-size:50% 50%;
+    background-position: -10px -20px;
+    width: 100%;
+    margin-top: 0;
+}
 .circle{
     display: flex;
-    align-items: right;
-    justify-content: right;
+    align-items: center;
+    justify-content: space-evenly;
     background-color: black;
     height: 60px;
     color: white;
@@ -67,14 +99,42 @@ header ul li a{
 }
 
 .box-1{
+
+    cursor: pointer;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
-    background-color: yellow;
+    margin-top: 40px;
+    margin-left: 160px;
+    /* background-color: yellow; */
+    background-image: url('./assets/Resolutions.jpg');
+    /* back */
+    /* opacity: 50%; */
+    width: 80%;
     color: black;
-    height: 600px;
+    height: 100%;
+    transition: transform 0.3s ease;
+    /* z-index: 1; */
 }
+.box-1:hover{
+    transform: scale(1.1);
+}
+
+.box-2{
+    /* margin-top: 15px; */
+    margin-bottom: 30px;
+}
+
+/* .box-1::before{
+    content: '';
+    position: absolute;
+    background-image: url("./assets/OIP\ \(17\).jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+} */
 
 .box-content{
     margin-top: 30px;
@@ -95,6 +155,18 @@ header ul li a{
     font-size: 1.5rem;
     margin-left: 25px;
     margin-right: 25px;
+}
+
+.faq{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    background-color: yellow;
+    width: 80%;
+    margin-left: 160px;
+    margin-top: 40px;
+    margin-bottom: 0;
 }
 
 footer{
