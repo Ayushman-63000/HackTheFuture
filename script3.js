@@ -1,57 +1,68 @@
-// Get elements
-const giveWasteOption = document.getElementById('giveWasteOption');
-const popup = document.getElementById('pickupFormPopup');
-const closePopup = document.getElementById('closePopup');
-const pickupForm = document.getElementById('pickupForm');
-const confirmationPopup = document.getElementById('confirmationPopup');
-const closeConfirmationPopup = document.getElementById('closeConfirmationPopup');
-const confirmationMessage = document.getElementById('confirmationMessage');
+document.addEventListener('DOMContentLoaded', function() {
+    // Get references to the buttons and popups
+    const sellWasteOption = document.getElementById('sellWasteOption');
+    const buyWasteOption = document.getElementById('buyWasteOption');
+    const sellWastePopup = document.getElementById('sellWastePopup');
+    const buyWastePopup = document.getElementById('buyWastePopup');
+    const closeSellPopup = document.getElementById('closeSellPopup');
+    const closeBuyPopup = document.getElementById('closeBuyPopup');
+    const addMaterialButton = document.getElementById('addMaterial');
+    const materialsContainer = document.getElementById('materialsContainer');
 
-// Show the pickup form popup when the option is clicked
-giveWasteOption.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent default anchor behavior
-    popup.style.display = 'block'; // Show the pickup form popup
-});
+    // Function to open the Sell Waste Products popup
+    sellWasteOption.onclick = function() {
+        sellWastePopup.style.display = 'block';
+    };
 
-// Close the pickup form popup when the 'x' is clicked
-closePopup.addEventListener('click', function() {
-    popup.style.display = 'none'; // Hide the pickup form popup
-});
+    // Function to open the Buy Finished Products popup
+    buyWasteOption.onclick = function() {
+        buyWastePopup.style.display = 'block';
+    };
 
-// Close the pickup form popup when clicking outside of the popup content
-window.addEventListener('click', function(event) {
-    if (event.target === popup) {
-        popup.style.display = 'none'; // Hide the pickup form popup
-    }
-});
+    // Function to close the Sell Waste Products popup
+    closeSellPopup.onclick = function() {
+        sellWastePopup.style.display = 'none';
+    };
 
-// Handle form submission
-pickupForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
+    // Function to close the Buy Finished Products popup
+    closeBuyPopup.onclick = function() {
+        buyWastePopup.style.display = 'none';
+    };
 
-    // Get form values
-    const location = document.getElementById('location').value;
-    const date = document.getElementById('date').value;
+    // Close popups when clicking outside of them
+    window.onclick = function(event) {
+        if (event.target === sellWastePopup) {
+            sellWastePopup.style.display = 'none';
+        }
+        if (event.target === buyWastePopup) {
+            buyWastePopup.style.display = 'none';
+        }
+    };
 
-    // Display confirmation message in the confirmation popup
-    confirmationMessage.textContent = `Pickup scheduled at ${location} on ${date}.`;
-    confirmationPopup.style.display = 'block'; // Show the confirmation popup
+    // Function to add another material entry
+    addMaterialButton.onclick = function() {
+        const newMaterialEntry = document.createElement('div');
+        newMaterialEntry.classList.add('material-entry');
 
-    // Hide the pickup form popup
-    popup.style.display = 'none';
+        newMaterialEntry.innerHTML = `
+            <select class="material-select" required>
+                <option value="">--Select Material--</option>
+                <option value="plastic">Plastic - ₹15 per kg</option>
+                <option value="paper">Paper - ₹10 per kg</option>
+                <option value="biomass">Biomass - ₹20 per kg</option>
+                <option value="metal">Metal - ₹55 per kg</option>
+                <option value="glass">Glass - ₹25 per kg</option>
+            </select>
+            <input type="number" class="material-quantity" placeholder="Quantity (kg)" min="1" required>
+            <button type="button" class="remove-material">Remove</button>
+        `;
 
-    // Reset the form
-    pickupForm.reset();
-});
+        // Add event listener to the remove button
+        newMaterialEntry.querySelector('.remove-material').onclick = function() {
+            materialsContainer.removeChild(newMaterialEntry);
+        };
 
-// Close the confirmation popup when the 'x' is clicked
-closeConfirmationPopup.addEventListener('click', function() {
-    confirmationPopup.style.display = 'none'; // Hide the confirmation popup
-});
-
-// Close the confirmation popup when clicking outside of the popup content
-window.addEventListener('click', function(event) {
-    if (event.target === confirmationPopup) {
-        confirmationPopup.style.display = 'none'; // Hide the confirmation popup
-    }
+        // Append the new material entry to the materials container
+        materialsContainer.appendChild(newMaterialEntry);
+    };
 });
